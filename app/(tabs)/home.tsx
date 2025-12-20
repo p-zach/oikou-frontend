@@ -1,10 +1,23 @@
+import RegionButton from "@/components/region-button";
 import "@/global.css";
-import { Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
+
+const lessons = [
+  "europe",
+  "americas",
+  "africa",
+]
 
 export default function Home() {
   return (
     <View className="flex-1 justify-center items-center">
-      <Text className="text-xl font-bold text-blue-500">Home</Text>
+      <ScrollView>
+        {lessons.map((region =>
+          <View key={`view-${region}`} className="my-4 mx-10">
+            <RegionButton region={region} key={region} />
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
