@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function Test() {
+export default function Home() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function Test() {
         alignItems: "center",
       }}
     >
-      <Text>test tsx</Text>
+      <Text>Home</Text>
     </View>
   );
 }
