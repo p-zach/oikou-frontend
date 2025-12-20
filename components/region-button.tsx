@@ -1,5 +1,6 @@
 import "@/global.css";
-import { Image, ImageSourcePropType, Pressable } from "react-native";
+import { capitalizeFirstLetter } from "@/scripts/strings";
+import { Image, ImageSourcePropType, Pressable, Text } from "react-native";
 
 const images: Record<string, ImageSourcePropType> = {
   'europe': require('@/assets/images/europe.png'),
@@ -18,10 +19,14 @@ export default function RegionButton({ region }: RegionButtonProps) {
 
   return (
     <Pressable
+      className="bg-slate-500 rounded-xl items-center p-3"
       onPress={onPress}
     >
+      <Text
+        className="font-lexend-regular text-lg text-white mb-2"
+      >{capitalizeFirstLetter(region)}</Text>
       <Image 
-        className="border-2 border-slate-500 rounded-xl"
+        className="rounded-xl"
         source={images[region]} 
       />
     </Pressable>

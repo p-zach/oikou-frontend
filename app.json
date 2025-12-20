@@ -39,7 +39,16 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/lexend/static/Lexend-Regular.ttf"]
+        }
       ]
+    ],
+    "assetBundlePatterns": [
+      "**/*"
     ],
     "experiments": {
       "typedRoutes": true,
