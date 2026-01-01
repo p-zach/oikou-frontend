@@ -1,3 +1,4 @@
+import ThemeToggle from "@/components/theme-toggle";
 import { Text, View } from "react-native";
 
 export default function Profile() {
@@ -10,6 +11,7 @@ export default function Profile() {
       }}
     >
       <Text>Profile</Text>
+      <ThemeToggle />
     </View>
   );
 }

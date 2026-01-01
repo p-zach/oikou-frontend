@@ -1,5 +1,6 @@
 import "@/global.css";
 import { capitalizeFirstLetter } from "@/scripts/strings";
+import { router } from 'expo-router';
 import { Image, ImageSourcePropType, Pressable, Text } from "react-native";
 
 const images: Record<string, ImageSourcePropType> = {
@@ -14,16 +15,21 @@ interface RegionButtonProps {
 
 export default function RegionButton({ region }: RegionButtonProps) {
   const onPress = () => {
-    alert("You pressed " + region + "!");
+    router.push({
+      pathname: "/lesson",
+      params: { 
+        l: region,
+      }
+    })
   };
 
   return (
     <Pressable
-      className="bg-slate-500 rounded-xl items-center p-3"
+      className="bg-primary rounded-xl items-center p-3"
       onPress={onPress}
     >
       <Text
-        className="font-lexend-regular text-lg text-white mb-2"
+        className="font-lexend-regular text-lg text-textPrimary mb-2"
       >{capitalizeFirstLetter(region)}</Text>
       <Image 
         className="rounded-xl"
