@@ -3,14 +3,8 @@ import { Text, View } from "react-native";
 
 export default function Profile() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Profile</Text>
+    <View className="flex-1 items-center justify-center bg-background">
+      <Text className="text-textPrimary">Profile</Text>
       <ThemeToggle />
     </View>
   );
