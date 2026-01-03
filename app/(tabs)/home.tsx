@@ -2,13 +2,8 @@ import ContinueLearningButton from "@/components/continue-learning-button";
 import PracticeButton from "@/components/practice-button";
 import RegionButton from "@/components/region-button";
 import "@/global.css";
+import * as Region from "@/types/regions";
 import { ScrollView, Text, View } from "react-native";
-
-const lessons = [
-  "europe",
-  "americas",
-  "africa",
-]
 
 const practice_options = [
   "🚩 Flags",
@@ -27,7 +22,7 @@ export default function Home() {
           Regions
         </Text>
         <View className="md:flex-row gap-4">
-          {lessons.map((region =>
+          {Region.AllRegions.map((region =>
             <View key={`view-${region}`} className="">
               <RegionButton region={region} />
             </View>

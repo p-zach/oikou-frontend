@@ -1,24 +1,25 @@
+import { mock_region_data } from "@/assets/mocks/region_data";
 import "@/global.css";
-import { capitalizeFirstLetter } from "@/scripts/strings";
+import * as Regions from "@/types/regions";
 import { router } from 'expo-router';
 import { Image, ImageSourcePropType, Pressable, Text } from "react-native";
 
-const images: Record<string, ImageSourcePropType> = {
+const images: Record<Regions.Region, ImageSourcePropType> = {
   'europe': require('@/assets/images/europe.png'),
   'americas': require('@/assets/images/americas.png'),
   'africa': require('@/assets/images/africa.png'),
 }
 
 interface RegionButtonProps {
-  region: string;
+  region: Regions.Region;
 }
 
 export default function RegionButton({ region }: RegionButtonProps) {
   const onPress = () => {
     router.push({
-      pathname: "/lesson",
+      pathname: "/region",
       params: { 
-        l: region,
+        r: region,
       }
     })
   };
@@ -30,7 +31,7 @@ export default function RegionButton({ region }: RegionButtonProps) {
     >
       <Text
         className="font-lexend-regular text-lg text-textPrimary mb-2"
-      >{capitalizeFirstLetter(region)}</Text>
+      >{mock_region_data[region].title}</Text>
       <Image 
         className="rounded-xl"
         source={images[region]} 
