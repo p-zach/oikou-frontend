@@ -1,7 +1,6 @@
 import { mock_region_data } from "@/assets/mocks/region_data";
-import LessonButton from "@/components/lesson-button";
+import Button from "@/components/button";
 import "@/global.css";
-import type * as Lessons from "@/types/lessons";
 import type * as Regions from "@/types/regions";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
@@ -18,7 +17,7 @@ export default function RegionMenu() {
         <View className="md:flex-row gap-4">
           {Object.keys(mock_region_data[r].mastery).map((lesson_type) =>
             <View key={`view-${lesson_type}`}>
-              <LessonButton region={r} lesson_type={lesson_type as Lessons.LessonType} />
+              <Button text={lesson_type} onPress={() => alert('Lesson button pressed for ' + lesson_type + r)} />
             </View>
           )}
         </View>
