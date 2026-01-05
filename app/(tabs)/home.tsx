@@ -22,6 +22,16 @@ export default function Home() {
     })
   };
 
+  const onContinueLearningButtonPress = () => {
+    router.push({
+      pathname: "/lesson",
+      params: {
+        r: mock_continue_learning.region,
+        t: mock_continue_learning.lesson_type,
+      }
+    })
+  };
+
   return (
     <ScrollView className="w-full p-4 bg-background">
       <View className="flex-col gap-4">
@@ -34,7 +44,7 @@ export default function Home() {
 ${Regions.RegionMetadata[mock_continue_learning.region].title} - \
 ${Lessons.LessonMetadata[mock_continue_learning.lesson_type].title}`
           }
-          onPress={() => alert('Continue learning button pressed')} 
+          onPress={onContinueLearningButtonPress} 
           className="self-start"
         />
         <Text className="font-lexend-regular text-3xl text-textPrimary">
