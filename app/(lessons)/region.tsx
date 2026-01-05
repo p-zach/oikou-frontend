@@ -1,7 +1,7 @@
 import { mock_region_data } from "@/assets/mocks/region_data";
 import Button from "@/components/button";
 import "@/global.css";
-import type * as Regions from "@/types/regions";
+import * as Regions from "@/types/regions";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 
@@ -12,7 +12,7 @@ export default function RegionMenu() {
     <ScrollView className="w-full p-4 bg-background">
       <View className="flex-col gap-4">
         <Text className="font-lexend-regular text-4xl text-textPrimary">
-          { mock_region_data[r].title }
+          { Regions.RegionMetadata[r].title }
         </Text>
         <View className="md:flex-row gap-4">
           {Object.keys(mock_region_data[r].mastery).map((lesson_type) =>

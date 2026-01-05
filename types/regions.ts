@@ -7,9 +7,24 @@ export const AllRegions = [
 ] as const;
 export type Region = typeof AllRegions[number];
 
-export type RegionData = {
-  title: string,
-  mastery: Record<Lessons.LessonType, number>
+export type RegionMetadataType = {
+    title: string;
 }
 
-export type RegionDataCollection = Record<Region, RegionData>;
+export const RegionMetadata: Record<Region, RegionMetadataType> = {
+    europe: {
+        title: "Europe",
+    },
+    americas: {
+        title: "The Americas",
+    },
+    africa: {
+        title: "Africa",
+    },
+}
+
+export type RegionUserData = {
+  mastery: Record<Lessons.LessonType, number>,
+}
+
+export type RegionUserDataMap = Record<Region, RegionUserData>;
