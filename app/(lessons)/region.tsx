@@ -1,12 +1,23 @@
-import { mock_region_data } from "@/assets/mocks/region_data";
+import { mock_region_data } from "@/assets/mocks/region-data";
 import Button from "@/components/button";
 import "@/global.css";
+import * as Lessons from "@/types/lessons";
 import * as Regions from "@/types/regions";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 
 export default function RegionMenu() {
   const { r } = useLocalSearchParams<{ r: Regions.Region }>();
+
+  const onLessonButtonPressed = (t: Lessons.LessonType) => {
+    router.push({
+      pathname: "/lesson",
+      params: { 
+        r: r,
+        t: t,
+      }
+    })
+  }
 
   return (
     <ScrollView className="w-full p-4 bg-background">
@@ -15,9 +26,15 @@ export default function RegionMenu() {
           { Regions.RegionMetadata[r].title }
         </Text>
         <View className="md:flex-row gap-4">
-          {Object.keys(mock_region_data[r].mastery).map((lesson_type) =>
+          {Lessons.AllLessons.map((lesson_type) =>
             <View key={`view-${lesson_type}`}>
-              <Button text={lesson_type} onPress={() => alert('Lesson button pressed for ' + lesson_type + r)} />
+              <Button 
+                text={
+`${Lessons.LessonMetadata[lesson_type].title}: \
+${(mock_region_data[r].mastery[lesson_type] * 100).toFixed(0)}%`
+                }
+                onPress={() => onLessonButtonPressed(lesson_type)}
+              />
             </View>
           )}
         </View>

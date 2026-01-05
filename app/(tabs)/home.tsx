@@ -1,3 +1,4 @@
+import { mock_continue_learning } from "@/assets/mocks/continue-learning";
 import Button from "@/components/button";
 import "@/global.css";
 import * as Lessons from "@/types/lessons";
@@ -28,7 +29,11 @@ export default function Home() {
           Home
         </Text>
         <Button 
-          text="Continue: Europe - Capitals"
+          text={
+            `Continue: \
+${Regions.RegionMetadata[mock_continue_learning.region].title} - \
+${Lessons.LessonMetadata[mock_continue_learning.lesson_type].title}`
+          }
           onPress={() => alert('Continue learning button pressed')} 
           className="self-start"
         />
@@ -52,7 +57,10 @@ export default function Home() {
         <View className="md:flex-row gap-4">
           {Lessons.AllLessons.map((option =>
             <View key={`view-${option}`} className="">
-              <Button text={option} onPress={() => alert('Practice button pressed')} />
+              <Button 
+                text={Lessons.LessonMetadata[option].title} 
+                onPress={() => alert('Practice button pressed')} 
+              />
             </View>
           ))}
         </View>

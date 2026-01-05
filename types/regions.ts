@@ -23,8 +23,8 @@ export const RegionMetadata: Record<Region, RegionMetadataType> = {
     },
 }
 
-export type RegionUserData = {
+export type RegionUserDataType = {
   mastery: Record<Lessons.LessonType, number>,
 }
 
-export type RegionUserDataMap = Record<Region, RegionUserData>;
+export type RegionUserDataMapType = Record<Region, RegionUserDataType>;
