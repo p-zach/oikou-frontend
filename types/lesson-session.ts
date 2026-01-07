@@ -1,9 +1,31 @@
+import { LessonSubject } from "@/types/lessons";
+import { Region } from "@/types/regions";
+
+/** Lesson request */
+export type LessonRequest = {
+  region: Region;
+  subject: LessonSubject;
+}
+
+/** Lesson */
+export type Lesson = {
+  sessionId: string;
+  challenges: Challenge[];
+}
+
 /** Lesson phases */
 export type LessonPhase =
   | 'loading'
   | 'answering'
   | 'feedback'
   | 'completed'
+
+/** Progress */
+export type LessonProgress = {
+  current: number;
+  total: number;
+  percent: number;
+}
 
 /** Challenges */
 export type ChallengeType = 

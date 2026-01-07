@@ -15,7 +15,7 @@ const images: Record<Regions.Region, ImageSourcePropType> = {
 export default function Home() {
   const onRegionButtonPress = (region: Regions.Region) => {
     router.push({
-      pathname: "/region",
+      pathname: "/learn/region",
       params: { 
         r: region,
       }
@@ -24,7 +24,7 @@ export default function Home() {
 
   const onContinueLearningButtonPress = () => {
     router.push({
-      pathname: "/lesson",
+      pathname: "/learn/lesson",
       params: {
         r: mock_continue_learning.region,
         t: mock_continue_learning.lesson_type,

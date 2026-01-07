@@ -1,51 +1,61 @@
-import { Challenge, Feedback, LessonPhase, MultipleChoiceChallenge } from '@/types/lesson-session';
+import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/types/lesson-session';
 import { loadLesson } from '@/utils/lesson-loader';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-export function useLessonSession(lessonId: string) {
-  const [challenges, setChallenges] = useState<Challenge[]>([])
-  const [index, setIndex] = useState(0)
-  const [phase, setPhase] = useState<LessonPhase>('loading')
-  const [feedback, setFeedback] = useState<Feedback | null>(null)
+export function useLessonSession() {
+  const [lesson, setLesson] = useState<Lesson | null>(null);
+  const [index, setIndex] = useState(0);
+  const [phase, setPhase] = useState<LessonPhase>('loading');
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
 
-  useEffect(() => {
-    loadLesson(lessonId).then(data => {
-      setChallenges(data)
-      setPhase('answering')
-    })
-  }, [lessonId]);
+  async function startLesson(request: LessonRequest) {
+    // Reset local state
+    setLesson(null);
+    setPhase('loading');
+    setIndex(0);
 
-  const currentChallenge = challenges[index]
+    const lesson = await loadLesson(request);
 
-  const progress = {
+    setLesson(lesson);
+    setPhase('answering');
+  }
+
+  const currentChallenge = lesson?.challenges[index];
+
+  const progress: LessonProgress | undefined = lesson === null ? undefined : {
     current: index + 1,
-    total: challenges.length,
-    percent: (index + 1) / challenges.length
+    total: lesson.challenges.length,
+    percent: (index + 1) / lesson.challenges.length
   }
 
   async function submitAnswer(answer: unknown) {
-    if (phase !== 'answering') return
+    if (currentChallenge === undefined || phase !== 'answering') return;
 
-    setPhase('feedback')
+    setPhase('feedback');
 
-    const result = await checkAnswer(currentChallenge, answer)
+    const result = await checkAnswer(currentChallenge, answer);
 
-    setFeedback(result)
+    setFeedback(result);
   }
 
-  function next() {
-    setFeedback(null)
+  function next(onLessonCompleteUI: () => void) {
+    if (lesson === null)
+      return;
 
-    if (index + 1 >= challenges.length) {
-      setPhase('completed')
-      completeLesson()
+    setFeedback(null);
+
+    if (index + 1 >= lesson.challenges.length) {
+      setPhase('completed');
+      completeLesson();
+      onLessonCompleteUI();
     } else {
-      setIndex(i => i + 1)
-      setPhase('answering')
+      setIndex(i => i + 1);
+      setPhase('answering');
     }
   }
 
   return {
+    startLesson,
     currentChallenge,
     progress,
     phase,
@@ -62,16 +72,15 @@ const checkAnswer = async (challenge: Challenge, answer: unknown): Promise<Feedb
     const isCorrect = mcChallenge.correctOptionIndex === answer;
     return {
       correct: isCorrect,
-      message: isCorrect ? 'Correct!' : 'Incorrect.'
+      message: isCorrect ? 'Correct!' : 'Incorrect.',
     };
   }
   return {
     correct: false,
-    message: 'Invalid challenge type.'
+    message: 'Invalid challenge type.',
   };
 };
 
 const completeLesson = () => {
-  // Simulate lesson completion logic
-  alert('Lesson completed!');
+  // Backend lesson completion logic
 }

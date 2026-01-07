@@ -4,13 +4,13 @@ export const AllLessons = [
     'neighbors',
 ] as const;
 
-export type LessonType = typeof AllLessons[number];
+export type LessonSubject = typeof AllLessons[number];
 
 export type LessonMetadataType = {
     title: string;
 }
 
-export const LessonMetadata: Record<LessonType, LessonMetadataType> = {
+export const LessonMetadata: Record<LessonSubject, LessonMetadataType> = {
     capitals: {
         title: "Capitals",
     },

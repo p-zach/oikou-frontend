@@ -9,9 +9,9 @@ import { ScrollView, Text, View } from "react-native";
 export default function RegionMenu() {
   const { r } = useLocalSearchParams<{ r: Regions.Region }>();
 
-  const onLessonButtonPressed = (t: Lessons.LessonType) => {
+  const onLessonButtonPressed = (t: Lessons.LessonSubject) => {
     router.push({
-      pathname: "/lesson",
+      pathname: "/learn/lesson",
       params: { 
         r: r,
         t: t,
