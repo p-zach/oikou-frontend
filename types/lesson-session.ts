@@ -7,12 +7,11 @@ export type LessonPhase =
 
 /** Challenges */
 export type ChallengeType = 
-| 'multiple-choice';
+  | 'multiple-choice';
 
 export interface Challenge {
   challengeType: ChallengeType;
   question: string;
-  feedback: Feedback;
 };
 
 export interface MultipleChoiceChallenge extends Challenge {
