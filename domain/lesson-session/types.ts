@@ -25,6 +25,7 @@ export type LessonProgress = {
   current: number;
   total: number;
   percent: number;
+  correct: number;
 }
 
 /** Challenges */

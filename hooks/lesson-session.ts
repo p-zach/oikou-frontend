@@ -1,4 +1,4 @@
-import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/domain/lesson-session/lesson-session';
+import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/domain/lesson-session';
 import { loadLesson } from '@/utils/lesson-loader';
 import { useState } from 'react';
 
@@ -7,12 +7,14 @@ export function useLessonSession() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<LessonPhase>('loading');
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [numCorrect, setNumCorrect] = useState(0);
 
   async function startLesson(request: LessonRequest) {
     // Reset local state
     setLesson(null);
     setPhase('loading');
     setIndex(0);
+    setNumCorrect(0);
 
     const lesson = await loadLesson(request);
 
@@ -25,7 +27,8 @@ export function useLessonSession() {
   const progress: LessonProgress | undefined = lesson === null ? undefined : {
     current: index,
     total: lesson.challenges.length,
-    percent: index / lesson.challenges.length
+    percent: index / lesson.challenges.length,
+    correct: numCorrect,
   }
 
   async function submitAnswer(answer: unknown) {
@@ -36,9 +39,11 @@ export function useLessonSession() {
     const result = await checkAnswer(currentChallenge, answer);
 
     setFeedback(result);
+    if (result.correct)
+      setNumCorrect(i => i + 1);
   }
 
-  function next(onLessonCompleteUI: () => void) {
+  function next() {
     if (lesson === null)
       return;
 
@@ -47,11 +52,10 @@ export function useLessonSession() {
     if (index + 1 >= lesson.challenges.length) {
       setPhase('completed');
       completeLesson();
-      onLessonCompleteUI();
     } else {
-      setIndex(i => i + 1);
       setPhase('answering');
     }
+    setIndex(i => i + 1);
   }
 
   return {
