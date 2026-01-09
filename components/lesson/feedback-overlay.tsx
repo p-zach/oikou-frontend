@@ -9,10 +9,12 @@ interface FeedbackOverlayProps {
 }
 
 export default function FeedbackOverlay({ feedback, onContinue }: FeedbackOverlayProps) {
+  const color = feedback?.correct ? "text-green-500" : "text-red-500";
+
   return (
-    <View>
-      <Text>Feedback: { feedback?.message }</Text>
-      <Button text='Continue' onPress={onContinue}/>
+    <View className='gap-4'>
+      <Text className={`font-lexend-regular text-lg ${color}`}>{ feedback?.message }</Text>
+      <Button text='Continue' onPress={onContinue} className='self-start'/>
     </View>
   );
 }

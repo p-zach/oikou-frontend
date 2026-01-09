@@ -1,19 +1,19 @@
 import { mock_continue_learning } from "@/assets/mocks/continue-learning";
 import Button from "@/components/button";
 import "@/global.css";
-import * as Lessons from "@/types/lessons";
-import * as Regions from "@/types/regions";
+import { AllLessons, LessonMetadata } from "@/types/lessons";
+import { AllRegions, Region, RegionMetadata } from "@/types/regions";
 import { router } from 'expo-router';
 import { ImageSourcePropType, ScrollView, Text, View } from "react-native";
 
-const images: Record<Regions.Region, ImageSourcePropType> = {
+const images: Record<Region, ImageSourcePropType> = {
   europe: require('@/assets/images/europe.png'),
   americas: require('@/assets/images/americas.png'),
   africa: require('@/assets/images/africa.png'),
 }
 
 export default function Home() {
-  const onRegionButtonPress = (region: Regions.Region) => {
+  const onRegionButtonPress = (region: Region) => {
     router.push({
       pathname: "/learn/region",
       params: { 
@@ -41,8 +41,8 @@ export default function Home() {
         <Button 
           text={
             `Continue: \
-${Regions.RegionMetadata[mock_continue_learning.region].title} - \
-${Lessons.LessonMetadata[mock_continue_learning.lesson_type].title}`
+${RegionMetadata[mock_continue_learning.region].title} - \
+${LessonMetadata[mock_continue_learning.lesson_type].title}`
           }
           onPress={onContinueLearningButtonPress} 
           className="self-start"
@@ -51,10 +51,10 @@ ${Lessons.LessonMetadata[mock_continue_learning.lesson_type].title}`
           Regions
         </Text>
         <View className="md:flex-row gap-4">
-          {Regions.AllRegions.map((region =>
+          {AllRegions.map((region =>
             <View key={`view-${region}`} className="">
               <Button 
-                text={Regions.RegionMetadata[region].title} 
+                text={RegionMetadata[region].title} 
                 onPress={() => onRegionButtonPress(region)} 
                 image={images[region]} 
               />
@@ -65,10 +65,10 @@ ${Lessons.LessonMetadata[mock_continue_learning.lesson_type].title}`
           Practice (all regions)
         </Text>
         <View className="md:flex-row gap-4">
-          {Lessons.AllLessons.map((option =>
+          {AllLessons.map((option =>
             <View key={`view-${option}`} className="">
               <Button 
-                text={Lessons.LessonMetadata[option].title} 
+                text={LessonMetadata[option].title} 
                 onPress={() => alert('Practice button pressed')} 
               />
             </View>

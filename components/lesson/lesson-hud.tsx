@@ -1,15 +1,20 @@
 import '@/global.css';
 import { LessonProgress } from '@/types/lesson-session';
-import { Text, View } from 'react-native';
+import { Region } from '@/types/regions';
+import { View } from 'react-native';
+import { Bar } from 'react-native-progress';
+import CloseButton from '../close-button';
 
 interface LessonHUDProps {
+  region: Region;
   progress: LessonProgress | undefined;
 }
 
-export default function LessonHUD({ progress }: LessonHUDProps) {
+export default function LessonHUD({ region, progress }: LessonHUDProps) {
   return (
-    <View>
-      <Text>Progress: { progress?.percent }</Text>
+    <View className='flex-row justify-between items-center'>
+      <Bar progress={progress?.percent} width={200} height={15} />
+      <CloseButton route={{ pathname: "./region", params: { r: region } }} />
     </View>
   );
 }

@@ -9,6 +9,7 @@ import { LessonSubject } from "@/types/lessons";
 import { Region } from "@/types/regions";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
+import { ScrollView, View } from "react-native";
 
 export default function Lesson() {
   const { r, t } = useLocalSearchParams<{ 
@@ -47,21 +48,23 @@ export default function Lesson() {
   if (!currentChallenge) return <Loading />
 
   return (
-    <>
-      <LessonHUD progress={progress} />
+    <ScrollView className="bg-background p-4">
+      <View className="gap-4">
+        <LessonHUD region={r} progress={progress} />
 
-      <ChallengeRenderer
-        challenge={currentChallenge}
-        disabled={phase !== 'answering'}
-        onSubmit={submitAnswer}
-      />
-
-      {phase === 'feedback' && (
-        <FeedbackOverlay
-          feedback={feedback}
-          onContinue={() => next(exitLesson)}
+        <ChallengeRenderer
+          challenge={currentChallenge}
+          disabled={phase !== 'answering'}
+          onSubmit={submitAnswer}
         />
-      )}
-    </>
+
+        {phase === 'feedback' && (
+          <FeedbackOverlay
+            feedback={feedback}
+            onContinue={() => next(exitLesson)}
+          />
+        )}
+      </View>
+    </ScrollView>
   );
 }

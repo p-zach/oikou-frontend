@@ -23,9 +23,9 @@ export function useLessonSession() {
   const currentChallenge = lesson?.challenges[index];
 
   const progress: LessonProgress | undefined = lesson === null ? undefined : {
-    current: index + 1,
+    current: index,
     total: lesson.challenges.length,
-    percent: (index + 1) / lesson.challenges.length
+    percent: index / lesson.challenges.length
   }
 
   async function submitAnswer(answer: unknown) {

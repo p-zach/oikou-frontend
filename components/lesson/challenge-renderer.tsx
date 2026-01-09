@@ -20,11 +20,13 @@ function MultipleChoiceChallengeView(props: ChallengeRendererProps) {
   const challenge = props.challenge as MultipleChoiceChallenge;
 
   return (
-    <View>
-      <Text>{ challenge.question }</Text>
-      { challenge.options.map((option, index) => {
-        return <Button key={option} text={option} onPress={() => props.onSubmit(index)}/>
-      })}
+    <View className='gap-4'>
+      <Text className='font-lexend-regular text-lg'>{ challenge.question }</Text>
+      <View className='md:flex-row gap-4'>
+        { challenge.options.map((option, index) => {
+          return <Button key={option} text={option} onPress={() => props.onSubmit(index)}/>
+        })}
+      </View>
     </View>
   );
 }

@@ -1,8 +1,8 @@
-import * as Regions from "@/types/regions";
+import { RegionUserDataMapType } from "@/types/regions";
 
 // Metadata & user data mock
 // TODO: Retrieve from API instead
-export const mock_region_data: Regions.RegionUserDataMapType = {
+export const mock_region_data: RegionUserDataMapType = {
   europe: {
     mastery: {
       capitals: .6,

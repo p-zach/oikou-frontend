@@ -1,4 +1,4 @@
-import * as Lessons from '@/types/lessons';
+import { LessonSubject } from '@/types/lessons';
 
 export const AllRegions = [
   'europe',
@@ -24,7 +24,7 @@ export const RegionMetadata: Record<Region, RegionMetadataType> = {
 }
 
 export type RegionUserDataType = {
-  mastery: Record<Lessons.LessonSubject, number>,
+  mastery: Record<LessonSubject, number>,
 }
 
 export type RegionUserDataMapType = Record<Region, RegionUserDataType>;
