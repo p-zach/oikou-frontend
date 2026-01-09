@@ -1,4 +1,4 @@
-import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/types/lesson-session';
+import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/domain/lesson-session/lesson-session';
 import { loadLesson } from '@/utils/lesson-loader';
 import { useState } from 'react';
 

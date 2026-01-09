@@ -1,6 +1,6 @@
+import { LessonProgress } from '@/domain/lesson-session';
+import { Region } from '@/domain/region';
 import '@/global.css';
-import { LessonProgress } from '@/types/lesson-session';
-import { Region } from '@/types/regions';
 import { View } from 'react-native';
 import { Bar } from 'react-native-progress';
 import CloseButton from '../close-button';

@@ -1,5 +1,5 @@
-import { LessonSubject } from "@/types/lessons";
-import { Region } from "@/types/regions";
+import { LessonSubject } from "@/domain/lesson";
+import { Region } from "@/domain/region";
 
 /** Lesson request */
 export type LessonRequest = {

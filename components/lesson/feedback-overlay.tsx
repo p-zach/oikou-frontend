@@ -1,6 +1,6 @@
 import Button from '@/components/button';
+import { Feedback } from '@/domain/lesson-session/lesson-session';
 import '@/global.css';
-import { Feedback } from '@/types/lesson-session';
 import { Text, View } from 'react-native';
 
 interface FeedbackOverlayProps {

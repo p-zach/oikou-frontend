@@ -1,4 +1,4 @@
-import { Lesson, LessonRequest, MultipleChoiceChallenge } from "@/types/lesson-session";
+import { Lesson, LessonRequest, MultipleChoiceChallenge } from "@/domain/lesson-session/lesson-session";
 
 // Mock lesson data
 const mockLessonData: Lesson = {

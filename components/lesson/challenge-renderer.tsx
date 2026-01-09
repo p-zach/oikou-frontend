@@ -1,6 +1,6 @@
 import Button from '@/components/button';
+import { Challenge, MultipleChoiceChallenge } from '@/domain/lesson-session/lesson-session';
 import '@/global.css';
-import { Challenge, MultipleChoiceChallenge } from '@/types/lesson-session';
 import { Text, View } from 'react-native';
 
 interface ChallengeRendererProps {

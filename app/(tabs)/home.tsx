@@ -1,8 +1,8 @@
 import { mock_continue_learning } from "@/assets/mocks/continue-learning";
 import Button from "@/components/button";
+import { getAllLessonSubjects, getLessonTitle } from "@/domain/lesson";
+import { getAllRegions, getRegionTitle, Region } from "@/domain/region";
 import "@/global.css";
-import { AllLessons, LessonMetadata } from "@/types/lessons";
-import { AllRegions, Region, RegionMetadata } from "@/types/regions";
 import { router } from 'expo-router';
 import { ImageSourcePropType, ScrollView, Text, View } from "react-native";
 
@@ -41,8 +41,8 @@ export default function Home() {
         <Button 
           text={
             `Continue: \
-${RegionMetadata[mock_continue_learning.region].title} - \
-${LessonMetadata[mock_continue_learning.lesson_type].title}`
+${getRegionTitle(mock_continue_learning.region)} - \
+${getLessonTitle(mock_continue_learning.lesson_type)}`
           }
           onPress={onContinueLearningButtonPress} 
           className="self-start"
@@ -51,10 +51,10 @@ ${LessonMetadata[mock_continue_learning.lesson_type].title}`
           Regions
         </Text>
         <View className="md:flex-row gap-4">
-          {AllRegions.map((region =>
+          {getAllRegions().map((region =>
             <View key={`view-${region}`} className="">
               <Button 
-                text={RegionMetadata[region].title} 
+                text={getRegionTitle(region)} 
                 onPress={() => onRegionButtonPress(region)} 
                 image={images[region]} 
               />
@@ -65,10 +65,10 @@ ${LessonMetadata[mock_continue_learning.lesson_type].title}`
           Practice (all regions)
         </Text>
         <View className="md:flex-row gap-4">
-          {AllLessons.map((option =>
+          {getAllLessonSubjects().map((option =>
             <View key={`view-${option}`} className="">
               <Button 
-                text={LessonMetadata[option].title} 
+                text={getLessonTitle(option)} 
                 onPress={() => alert('Practice button pressed')} 
               />
             </View>
