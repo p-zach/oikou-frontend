@@ -1,9 +1,10 @@
 import { Lesson, LessonRequest } from "@/domain/lesson-session";
-import api from "@/utils/api";
+import getApi from "@/utils/api";
 import { isAxiosError } from "axios";
 
 export const loadLesson = async (request: LessonRequest): Promise<Lesson | undefined> => {
   try {
+    const api = await getApi();
     const response = await api.post("/lesson/start", request);
     return response.data;
   } catch (error) {
