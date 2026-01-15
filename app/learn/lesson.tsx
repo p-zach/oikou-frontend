@@ -32,6 +32,7 @@ export default function Lesson() {
     const lessonRequest: LessonRequest = {
       region: r,
       subject: t,
+      questionCount: 5,
     }
 
     startLesson(lessonRequest);

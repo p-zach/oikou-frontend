@@ -1,31 +1,16 @@
-import { Lesson, LessonRequest, MultipleChoiceChallenge } from "@/domain/lesson-session/lesson-session";
+import { Lesson, LessonRequest } from "@/domain/lesson-session";
+import api from "@/utils/api";
+import { isAxiosError } from "axios";
 
-// Mock lesson data
-const mockLessonData: Lesson = {
-  sessionId: "asdf-ghjk-zxcv",
-  challenges: [
-    {
-      challengeType: 'multiple-choice',
-      question: "What is the capital of France?",
-      options: ["Berlin", "Madrid", "Paris", "Rome"],
-      correctOptionIndex: 2,
-    } as MultipleChoiceChallenge,
-    {
-      challengeType: 'multiple-choice',
-      question: "What is the capital of Spain?",
-      options: ["Paris", "London", "Lisbon", "Madrid"],
-      correctOptionIndex: 3,
-    } as MultipleChoiceChallenge,
-    {
-      challengeType: 'multiple-choice',
-      question: "What is the capital of the United Kingdom?",
-      options: ["London", "Berlin", "Newcastle", "Brussels"],
-      correctOptionIndex: 0,
-    } as MultipleChoiceChallenge,
-  ],
-}
-
-// TODO: Send request to API
-export const loadLesson = async (request: LessonRequest): Promise<Lesson> => {
-  return mockLessonData;
+export const loadLesson = async (request: LessonRequest): Promise<Lesson | undefined> => {
+  try {
+    const response = await api.post("/lesson/start", request);
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error('Axios error:', error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+  }
 };

@@ -18,6 +18,12 @@ export function useLessonSession() {
 
     const lesson = await loadLesson(request);
 
+    if (lesson === undefined) {
+      // TODO: Show error
+      console.error("No lesson was received from the server.")
+      return;
+    }
+
     setLesson(lesson);
     setPhase('answering');
   }

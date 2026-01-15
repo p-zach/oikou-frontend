@@ -5,6 +5,7 @@ import { Region } from "@/domain/region";
 export type LessonRequest = {
   region: Region;
   subject: LessonSubject;
+  questionCount: number;
 }
 
 /** Lesson */
@@ -33,6 +34,7 @@ export type ChallengeType =
   | 'multiple-choice';
 
 export interface Challenge {
+  itemId: string;
   challengeType: ChallengeType;
   question: string;
 };

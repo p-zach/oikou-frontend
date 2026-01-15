@@ -20,8 +20,6 @@ export default function LessonComplete({ region, progress }: LessonCompleteProps
     })
   }
 
-  console.log("displaying lesson-complete");
-
   return (
     <View className='gap-4'>
       <Text className='font-lexend-regular text-xl'>Lesson complete!</Text>
