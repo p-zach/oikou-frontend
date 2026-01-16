@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import { Feedback } from '@/domain/lesson-session/lesson-session';
+import { Feedback } from '@/domain/lesson-session';
 import '@/global.css';
 import { Text, View } from 'react-native';
 

@@ -23,7 +23,6 @@ export default function LessonComplete({ region, progress }: LessonCompleteProps
   return (
     <View className='gap-4'>
       <Text className='font-lexend-regular text-xl'>Lesson complete!</Text>
-      <Text className='font-lexend-regular text-lg'>{ progress.correct } of { progress.total } correct.</Text>
       <Button text='Continue' onPress={onContinuePress} className='self-start' />
     </View>
   );

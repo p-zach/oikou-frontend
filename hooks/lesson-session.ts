@@ -7,14 +7,12 @@ export function useLessonSession() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<LessonPhase>('loading');
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const [numCorrect, setNumCorrect] = useState(0);
 
   async function startLesson(request: LessonRequest) {
     // Reset local state
     setLesson(null);
     setPhase('loading');
     setIndex(0);
-    setNumCorrect(0);
 
     const lesson = await loadLesson(request);
 
@@ -34,19 +32,24 @@ export function useLessonSession() {
     current: index,
     total: lesson.challenges.length,
     percent: index / lesson.challenges.length,
-    correct: numCorrect,
   }
 
   async function submitAnswer(answer: unknown) {
-    if (currentChallenge === undefined || phase !== 'answering') return;
+    if (currentChallenge === undefined 
+        || lesson == null 
+        || phase !== 'answering') 
+      return;
 
     setPhase('feedback');
 
     const result = await checkAnswer(currentChallenge, answer);
 
     setFeedback(result);
-    if (result.correct)
-      setNumCorrect(i => i + 1);
+    if (!result.correct) {
+      // Add the failed challenge to the end of the challenge list
+      const newChallenges = [...lesson.challenges, currentChallenge];
+      setLesson({ ...lesson, challenges: newChallenges });
+    }
   }
 
   function next() {
