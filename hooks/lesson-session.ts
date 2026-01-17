@@ -1,6 +1,6 @@
-import { Challenge, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, MultipleChoiceChallenge } from '@/domain/lesson-session';
-import { loadLesson } from '@/utils/lesson-loader';
-import { useState } from 'react';
+import { Challenge, ChallengeResult, Feedback, Lesson, LessonPhase, LessonProgress, LessonRequest, LessonResult, MultipleChoiceChallenge } from '@/domain/lesson-session';
+import { loadLesson, sendLessonComplete } from '@/utils/lesson-api';
+import { useRef, useState } from 'react';
 
 export function useLessonSession() {
   const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -8,11 +8,14 @@ export function useLessonSession() {
   const [phase, setPhase] = useState<LessonPhase>('loading');
   const [feedback, setFeedback] = useState<Feedback | null>(null);
 
+  const challengeResults = useRef<ChallengeResult[]>([]);
+
   async function startLesson(request: LessonRequest) {
     // Reset local state
     setLesson(null);
     setPhase('loading');
     setIndex(0);
+    challengeResults.current = [];
 
     const lesson = await loadLesson(request);
 
@@ -47,9 +50,15 @@ export function useLessonSession() {
     setFeedback(result);
     if (!result.correct) {
       // Add the failed challenge to the end of the challenge list
-      const newChallenges = [...lesson.challenges, currentChallenge];
-      setLesson({ ...lesson, challenges: newChallenges });
+      lesson.challenges.push(currentChallenge);
+      setLesson(lesson);
     }
+    
+    // Store result of challenge to be sent in lesson complete payload
+    challengeResults.current.push({
+      factId: currentChallenge.factId,
+      correct: result.correct,
+    })
   }
 
   function next() {
@@ -60,7 +69,7 @@ export function useLessonSession() {
 
     if (index + 1 >= lesson.challenges.length) {
       setPhase('completed');
-      completeLesson();
+      completeLesson(lesson, challengeResults.current);
     } else {
       setPhase('answering');
     }
@@ -94,6 +103,11 @@ const checkAnswer = async (challenge: Challenge, answer: unknown): Promise<Feedb
   };
 };
 
-const completeLesson = () => {
-  // Backend lesson completion logic
+const completeLesson = async (lesson: Lesson, challegeResults: ChallengeResult[]) => {
+  const payload: LessonResult = {
+    sessionId: lesson.sessionId,
+    results: challegeResults,
+  }
+
+  await sendLessonComplete(payload);
 }

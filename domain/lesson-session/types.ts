@@ -14,6 +14,11 @@ export type Lesson = {
   challenges: Challenge[];
 }
 
+export type LessonResult = {
+  sessionId: string;
+  results: ChallengeResult[];
+}
+
 /** Lesson phases */
 export type LessonPhase =
   | 'loading'
@@ -30,16 +35,20 @@ export type LessonProgress = {
 
 /** Challenges */
 export type ChallengeType = 
-  | 'multiple-choice';
+  | 'multiple-choice'
 
 export interface Challenge {
-  itemId: string;
+  factId: string;
   challengeType: ChallengeType;
   question: string;
 };
 
+export type ChallengeResult = {
+  factId: string;
+  correct: boolean;
+}
+
 export interface MultipleChoiceChallenge extends Challenge {
-  challengeType: 'multiple-choice';
   options: string[];
   correctOptionIndex: number;
 }

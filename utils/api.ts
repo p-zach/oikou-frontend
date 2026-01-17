@@ -1,9 +1,9 @@
 import { getOrCreateLocalUUID } from '@/utils/local-uuid';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, isAxiosError } from 'axios';
 
 let api: AxiosInstance | null = null;
 
-export default async function getAPI() : Promise<AxiosInstance> {
+export async function getAPI() : Promise<AxiosInstance> {
   if (api !== null) {
     return api;
   }
@@ -21,3 +21,11 @@ export default async function getAPI() : Promise<AxiosInstance> {
   });
   return api;
 };
+
+export const logApiError = (error: unknown): void => {
+  if (isAxiosError(error)) {
+    console.error('Axios error:', error.message);
+  } else {
+    console.error('Unexpected error:', error);
+  }
+}
