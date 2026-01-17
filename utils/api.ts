@@ -12,7 +12,7 @@ export async function getAPI() : Promise<AxiosInstance> {
 
   api = axios.create({
     // baseURL: 'https://prod-usea2-oikou-fn.azurewebsites.net',
-    baseURL: 'http://localhost:7071/api',
+    baseURL: 'http://localhost:7071/api/v1',
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
