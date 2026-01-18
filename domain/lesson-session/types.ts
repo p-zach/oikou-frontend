@@ -1,7 +1,7 @@
 import { LessonSubject } from "@/domain/lesson";
 import { Region } from "@/domain/region";
 
-/** Lesson request */
+/** Requests */
 export type LessonRequest = {
   region: Region;
   subject: LessonSubject;
