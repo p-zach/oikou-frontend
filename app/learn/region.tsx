@@ -27,7 +27,7 @@ export default function RegionMenu() {
           <Text className="font-lexend-regular text-4xl text-textPrimary">
             { getRegionTitle(r) }
           </Text>
-          <CloseButton route={{ pathname: "../home" }} />
+          <CloseButton />
         </View>
         <View className="md:flex-row gap-4">
           {getAllLessonSubjects().map((lesson_type) =>

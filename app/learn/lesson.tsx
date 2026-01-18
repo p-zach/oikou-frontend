@@ -43,7 +43,7 @@ export default function Lesson() {
   return (
     <ScrollView className="bg-background p-4">
       <View className="gap-4">
-        <LessonHUD region={r} progress={progress} />
+        <LessonHUD progress={progress} />
 
         {(phase === 'answering' || phase === 'feedback') && (
           <ChallengeRenderer
@@ -61,7 +61,7 @@ export default function Lesson() {
         )}
 
         {phase === 'completed' && (
-          <LessonComplete region={r} progress={progress!} />
+          <LessonComplete />
         )}
       </View>
     </ScrollView>
