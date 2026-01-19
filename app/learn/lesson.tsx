@@ -43,7 +43,7 @@ export default function Lesson() {
   return (
     <ScrollView className="bg-background p-4">
       <View className="gap-4">
-        <LessonHUD progress={progress} />
+        <LessonHUD phase={phase} progress={progress} />
 
         {(phase === 'answering' || phase === 'feedback') && (
           <ChallengeRenderer

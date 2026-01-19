@@ -1,10 +1,10 @@
 import '@/global.css';
-import { Text, View } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 export default function Loading() {
   return (
-    <View>
-        <Text>Loading...</Text>
-    </View>
+    <ScrollView className="bg-background p-4">
+        <Text className='text-lg font-lexend-regular'>Loading...</Text>
+    </ScrollView>
   );
 }

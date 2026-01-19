@@ -19,20 +19,20 @@ export function useLessonSession() {
     setPhase('loading');
     setIndex(0);
     challengeResults.current = [];
-    facts.current = {}
+    facts.current = {};
 
     const lesson = await loadLesson(request);
 
     if (lesson === undefined) {
-      // TODO: Show error
-      console.error("No lesson was received from the server.")
+      console.error("No lesson was received from the server.");
+      setPhase('error');
       return;
     }
 
     setLesson(lesson);
     setPhase('answering');
 
-    const retrieved_facts = await getFacts(lesson.challenges.map(c => c.factId), request.subject)
+    const retrieved_facts = await getFacts(lesson.challenges.map(c => c.factId), request.subject);
     if (retrieved_facts) {
       // Create the { factId: fact } record from the retrieved facts
       facts.current = retrieved_facts.reduce((accumulator, fact) => {
@@ -109,7 +109,7 @@ const checkAnswer = async (challenge: Challenge, answer: unknown, facts: Record<
 
     let message = 'Correct!';
     if (!isCorrect) {
-      message = 'Incorrect.'
+      message = 'Incorrect.';
       // Add correct answer if there's data in the facts metadata record. There 
       // should be, but it's possible there was be a server error that led to an
       // empty response.

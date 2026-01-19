@@ -25,6 +25,7 @@ export type LessonPhase =
   | 'answering'
   | 'feedback'
   | 'completed'
+  | 'error'
 
 /** Progress */
 export type LessonProgress = {
