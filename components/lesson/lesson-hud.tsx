@@ -1,15 +1,17 @@
 import { LessonPhase, LessonProgress } from '@/domain/lesson-session';
+import { Region } from '@/domain/region';
 import '@/global.css';
 import { Text, View } from 'react-native';
 import { Bar } from 'react-native-progress';
 import CloseButton from '../close-button';
 
 interface LessonHUDProps {
+  region: Region;
   phase: LessonPhase;
   progress: LessonProgress | undefined;
 }
 
-export default function LessonHUD({ phase, progress }: LessonHUDProps) {
+export default function LessonHUD({ region, phase, progress }: LessonHUDProps) {
   return (
     <>
       <View className='flex-row justify-between items-center'>
@@ -18,7 +20,7 @@ export default function LessonHUD({ phase, progress }: LessonHUDProps) {
         }
         {/* Dummy view to force close button always to the right */}
         <View></View>
-        <CloseButton />
+        <CloseButton route={{ pathname: "./region", params: { r: region } }} />
       </View>
       {phase === 'error' && 
         <View>
