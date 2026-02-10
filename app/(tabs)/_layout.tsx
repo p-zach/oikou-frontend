@@ -1,25 +1,23 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from "expo-router";
-import { useColorScheme } from 'nativewind';
+import { TabList, Tabs, TabSlot, TabTrigger } from "expo-router/ui";
+import { View } from 'react-native';
 
 export default function TabsLayout() {
-  const { colorScheme } = useColorScheme();
-
-  const background = "rgb(var(--surface))";
-  const active = "rgb(var(--primary))";
-  const inactive = "rgb(var(--text-secondary))";
-
-  const iconColor = colorScheme === 'light' ? "black" : "white";
-
   return (
-    <Tabs screenOptions={{
-        headerShown: false,
-        tabBarStyle: { backgroundColor: background },
-        tabBarActiveTintColor: active,
-        tabBarInactiveTintColor: inactive,
-      }}>
-      <Tabs.Screen name="home" options={{ title: "", headerShown: false, tabBarIcon: (_) => <Ionicons name="home" size={24} color={iconColor} /> }} />
-      <Tabs.Screen name="profile" options={{ title: "", headerShown: false, tabBarIcon: (_) => <Ionicons name="person-circle" size={24} color={iconColor} />}} />
+    <Tabs>
+      <TabSlot />
+      <TabList className='bg-background border-border border-t flex-row justify-around'>
+        <TabTrigger name='home' href={'/home'} className='p-2 flex-grow justify-center'>
+          <View >
+            <Ionicons name="home" size={36} className='text-textPrimary' />
+          </View>
+        </TabTrigger>
+        <TabTrigger name='profile' href={'/profile'} className='p-2 flex-grow justify-center'>
+          <View>
+            <Ionicons name="person-circle" size={36} className='text-textPrimary' />
+          </View>
+        </TabTrigger>
+      </TabList>
     </Tabs>
   );
 }
