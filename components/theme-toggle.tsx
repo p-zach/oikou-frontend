@@ -1,5 +1,5 @@
-import { Button } from "@/components";
 import { useColorScheme } from "nativewind";
+import Button from "./button";
 
 export default function ThemeToggle() {
   const { colorScheme, setColorScheme } = useColorScheme();

@@ -1,6 +1,6 @@
-import { AppText } from '@/components';
 import '@/global.css';
 import { ScrollView } from 'react-native';
+import AppText from './app-text';
 
 export default function Loading() {
   return (

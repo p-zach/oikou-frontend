@@ -1,7 +1,7 @@
-import { AppText } from '@/components';
 import '@/global.css';
 import { ReactNode } from 'react';
 import { Image, ImageSourcePropType, Pressable } from 'react-native';
+import AppText from './app-text';
 
 interface ButtonProps {
   text: string;
