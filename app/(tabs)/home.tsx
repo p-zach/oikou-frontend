@@ -1,10 +1,10 @@
 import { mock_continue_learning } from "@/assets/mocks/continue-learning";
-import Button from "@/components/button";
+import { AppText, Button } from "@/components";
 import { getAllLessonSubjects, getLessonTitle } from "@/domain/lesson";
 import { getAllRegions, getRegionTitle, Region } from "@/domain/region";
 import "@/global.css";
 import { router } from 'expo-router';
-import { ImageSourcePropType, ScrollView, Text, View } from "react-native";
+import { ImageSourcePropType, ScrollView, View } from "react-native";
 
 const images: Record<Region, ImageSourcePropType> = {
   europe: require('@/assets/images/europe.png'),
@@ -35,9 +35,9 @@ export default function Home() {
   return (
     <ScrollView className="w-full p-4 bg-background">
       <View className="flex-col gap-4">
-        <Text className="font-lexend-regular text-4xl text-textPrimary">
+        <AppText className="text-4xl">
           Home
-        </Text>
+        </AppText>
         <Button 
           text={
             `Continue: \
@@ -47,9 +47,9 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
           onPress={onContinueLearningButtonPress} 
           className="self-start"
         />
-        <Text className="font-lexend-regular text-3xl text-textPrimary">
+        <AppText className="text-3xl">
           Regions
-        </Text>
+        </AppText>
         <View className="md:flex-row gap-4">
           {getAllRegions().map((region =>
             <View key={`view-${region}`} className="">
@@ -61,9 +61,9 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
             </View>
           ))}
         </View>
-        <Text className="font-lexend-regular text-3xl text-textPrimary">
+        <AppText className="text-3xl">
           Practice (all regions)
-        </Text>
+        </AppText>
         <View className="md:flex-row gap-4">
           {getAllLessonSubjects().map((option =>
             <View key={`view-${option}`} className="">

@@ -1,9 +1,9 @@
+import { AppText, CloseButton } from '@/components';
 import { LessonPhase, LessonProgress } from '@/domain/lesson-session';
 import { Region } from '@/domain/region';
 import '@/global.css';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Bar } from 'react-native-progress';
-import CloseButton from '../close-button';
 
 interface LessonHUDProps {
   region: Region;
@@ -24,9 +24,9 @@ export default function LessonHUD({ region, phase, progress }: LessonHUDProps) {
       </View>
       {phase === 'error' && 
         <View>
-          <Text className='text-lg font-lexend-regular'>
+          <AppText className='text-lg'>
             An error occurred. Please try again later.
-          </Text>
+          </AppText>
         </View>
       }
     </>

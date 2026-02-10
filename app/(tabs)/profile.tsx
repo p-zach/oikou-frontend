@@ -1,7 +1,7 @@
-import ThemeToggle from "@/components/theme-toggle";
+import { AppText, ThemeToggle } from "@/components";
 import { getOrCreateLocalUUID } from "@/utils/local-uuid";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function Profile() {
   const [localUUID, setLocalUUID] = useState<string | null>(null);
@@ -16,9 +16,9 @@ export default function Profile() {
 
   return (
     <View className="flex-1 items-center justify-center bg-background">
-      <Text className="text-textPrimary">Profile</Text>
+      <AppText className="text-4xl">Profile</AppText>
       <ThemeToggle />
-      <Text className="text-textPrimary mt-4">Your local UUID: {localUUID}</Text>
+      <AppText className="mt-4">Your local UUID: {localUUID}</AppText>
     </View>
   );
 }

@@ -1,6 +1,7 @@
+import { AppText } from '@/components';
 import '@/global.css';
 import { ReactNode } from 'react';
-import { Image, ImageSourcePropType, Pressable, Text } from 'react-native';
+import { Image, ImageSourcePropType, Pressable } from 'react-native';
 
 interface ButtonProps {
   text: string;
@@ -16,9 +17,9 @@ export default function Button({ text, onPress, className, image, children }: Bu
       className={`bg-primary rounded-xl items-center p-3 ${className || ''}`}
       onPress={onPress}
     >
-      <Text className={`font-lexend-regular text-lg text-textPrimary ${image ? 'mb-2' : ''}`}>
+      <AppText className={`text-lg ${image ? 'mb-2' : ''}`}>
         {text}
-      </Text>
+      </AppText>
       { image && <Image className="rounded-xl" source={image} /> }
       {children}
     </Pressable>

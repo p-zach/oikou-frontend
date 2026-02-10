@@ -1,7 +1,7 @@
-import Button from '@/components/button';
+import { AppText, Button } from '@/components';
 import { Feedback } from '@/domain/lesson-session';
 import '@/global.css';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 interface FeedbackOverlayProps {
   feedback: Feedback | null;
@@ -13,7 +13,7 @@ export default function FeedbackOverlay({ feedback, onContinue }: FeedbackOverla
 
   return (
     <View className='gap-4'>
-      <Text className={`font-lexend-regular text-lg ${color}`}>{ feedback?.message }</Text>
+      <AppText className={`text-lg ${color}`}>{ feedback?.message }</AppText>
       <Button text='Continue' onPress={onContinue} className='self-start'/>
     </View>
   );

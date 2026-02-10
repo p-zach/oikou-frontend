@@ -1,7 +1,7 @@
-import Button from '@/components/button';
+import { AppText, Button } from '@/components';
 import { Challenge, MultipleChoiceChallenge } from '@/domain/lesson-session';
 import '@/global.css';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 interface ChallengeRendererProps {
   challenge: Challenge;
@@ -21,7 +21,7 @@ function MultipleChoiceChallengeView(props: ChallengeRendererProps) {
 
   return (
     <View className='gap-4'>
-      <Text className='font-lexend-regular text-lg'>{ challenge.question }</Text>
+      <AppText className='text-lg'>{ challenge.question }</AppText>
       <View className='md:flex-row gap-4'>
         { challenge.options.map((option, index) => {
           return <Button key={option} text={option} onPress={() => props.onSubmit(index)}/>

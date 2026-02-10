@@ -1,5 +1,4 @@
-import Button from "@/components/button";
-import CloseButton from "@/components/close-button";
+import { AppText, Button, CloseButton } from "@/components";
 import { getAllLessonSubjects, getLessonTitle, LessonSubject } from "@/domain/lesson";
 import { getRegionTitle, Region } from "@/domain/region";
 import { RegionSubjectMastery } from "@/domain/user";
@@ -7,7 +6,7 @@ import "@/global.css";
 import { getMasterySummary } from "@/utils/mastery-api";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Bar } from "react-native-progress";
 
 export default function RegionMenu() {
@@ -38,9 +37,9 @@ export default function RegionMenu() {
     <ScrollView className="w-full p-4 bg-background">
       <View className="w-full flex-col gap-4">
         <View className="w-full flex-row justify-between">
-          <Text className="font-lexend-regular text-4xl text-textPrimary">
+          <AppText className="text-4xl">
             { getRegionTitle(r) }
-          </Text>
+          </AppText>
           <CloseButton route={{ pathname: "../home" }} />
         </View>
         <View className="md:flex-row gap-4">
