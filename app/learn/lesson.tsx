@@ -1,8 +1,5 @@
-import ChallengeRenderer from "@/components/lesson/challenge-renderer";
-import FeedbackOverlay from "@/components/lesson/feedback-overlay";
-import LessonComplete from "@/components/lesson/lesson-complete";
-import LessonHUD from "@/components/lesson/lesson-hud";
-import Loading from "@/components/loading";
+import { Loading } from "@/components";
+import { ChallengeRenderer, FeedbackOverlay, LessonComplete, LessonHUD } from "@/components/lesson";
 import { LessonSubject } from "@/domain/lesson";
 import { LessonRequest } from "@/domain/lesson-session";
 import { Region } from "@/domain/region";
