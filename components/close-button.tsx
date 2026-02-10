@@ -1,12 +1,19 @@
 import '@/global.css';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { router } from 'expo-router';
+import { RelativePathString, router, UnknownInputParams } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import { Pressable } from 'react-native';
 
-export default function CloseButton() {
+interface CloseButtonProps {
+  route: { pathname: RelativePathString, params?: UnknownInputParams };
+}
+
+export default function CloseButton({ route }: CloseButtonProps) {
   const onPress = () => {
-    router.back()
+    if (router.canGoBack())
+      router.back()
+    else
+      router.push(route)
   }
 
   const { colorScheme } = useColorScheme();
