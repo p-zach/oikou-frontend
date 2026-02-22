@@ -14,10 +14,10 @@ interface ButtonProps {
 export default function Button({ text, onPress, className, image, children }: ButtonProps) {
   return (
     <Pressable
-      className={`bg-primary rounded-xl items-center p-3 ${className || ''}`}
+      className={`bg-primary rounded-xl items-center p-3 shadow-shadow shadow-md ${className || ''}`}
       onPress={onPress}
     >
-      <AppText className={`text-lg ${image ? 'mb-2' : ''}`}>
+      <AppText className={`text-lg text-textSecondary ${image ? 'mb-2' : ''}`}>
         {text}
       </AppText>
       { image && <Image className="rounded-xl" source={image} /> }

@@ -6,11 +6,12 @@
   --background: #ffffff;
   --surface: #f8fafc;
   --border: #e2e8f0;
+  --shadow: #22222277;
 
   --text-primary: #020617;
-  --text-secondary: #334155;
+  --text-secondary: #f8fafc;
 
-  --primary: #6991f5;
+  --primary: #5185ff;
   --primary-foreground: #ffffff;
 
   --accent: #eab308;
@@ -21,11 +22,12 @@
   --background: #0f172a;
   --surface: #020617;
   --border: #1e293b;
+  --shadow: #dddddd55;
 
   --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
+  --text-secondary: #f8fafc;
 
-  --primary: #6991f5;
+  --primary: #5185ff;
   --primary-foreground: #020617;
 
   --accent: #eab308;

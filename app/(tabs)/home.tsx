@@ -33,8 +33,8 @@ export default function Home() {
   };
 
   return (
-    <ScrollView className="w-full p-4 bg-background">
-      <View className="flex-col gap-4">
+    <ScrollView className="w-full p-6 bg-background">
+      <View className="flex-col gap-8">
         <AppText className="text-4xl">
           Home
         </AppText>
@@ -47,24 +47,24 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
           onPress={onContinueLearningButtonPress} 
           className="self-start"
         />
-        <AppText className="text-3xl">
+        <AppText className="text-3xl -mb-4">
           Regions
         </AppText>
-        <View className="gap-4">
+        <ScrollView horizontal className="-mx-6 flex-row" contentContainerClassName="px-6 py-4 gap-8">
           {getAllRegions().map((region =>
             <View key={`view-${region}`} className="">
               <Button 
                 text={getRegionTitle(region)} 
                 onPress={() => onRegionButtonPress(region)} 
-                image={images[region]} 
+                image={images[region]}
               />
             </View>
           ))}
-        </View>
+        </ScrollView>
         <AppText className="text-3xl">
           Practice (all regions)
         </AppText>
-        <View className="gap-4">
+        <View className="gap-4 grid grid-cols-2">
           {getAllLessonSubjects().map((option =>
             <View key={`view-${option}`} className="">
               <Button 

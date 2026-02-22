@@ -14,6 +14,7 @@ module.exports = {
         background: "var(--background)",
         surface: "var(--surface)",
         border: "var(--border)",
+        shadow: "var(--shadow)",
 
         textPrimary: "var(--text-primary)",
         textSecondary: "var(--text-secondary)",

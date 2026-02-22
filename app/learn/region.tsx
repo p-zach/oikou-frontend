@@ -3,7 +3,7 @@ import { getAllLessonSubjects, getLessonTitle, LessonSubject } from "@/domain/le
 import { getRegionTitle, Region } from "@/domain/region";
 import { RegionSubjectMastery } from "@/domain/user";
 import "@/global.css";
-import { getColorFromCssVariable } from "@/utils/css";
+import { getCssVariableValue } from "@/utils/css";
 import { getMasterySummary } from "@/utils/mastery-api";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
@@ -59,7 +59,7 @@ export default function RegionMenu() {
                   } 
                   width={100} 
                   height={10}
-                  color={getColorFromCssVariable('--text-primary')}
+                  color={getCssVariableValue('--text-secondary')}
                 />
               </Button>
             </View>
