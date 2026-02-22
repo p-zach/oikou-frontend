@@ -50,7 +50,7 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
         <AppText className="text-3xl">
           Regions
         </AppText>
-        <View className="md:flex-row gap-4">
+        <View className="gap-4">
           {getAllRegions().map((region =>
             <View key={`view-${region}`} className="">
               <Button 
@@ -64,7 +64,7 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
         <AppText className="text-3xl">
           Practice (all regions)
         </AppText>
-        <View className="md:flex-row gap-4">
+        <View className="gap-4">
           {getAllLessonSubjects().map((option =>
             <View key={`view-${option}`} className="">
               <Button 

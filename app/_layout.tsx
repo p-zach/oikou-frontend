@@ -1,9 +1,9 @@
+import AppWrapper from '@/components/app-wrapper';
 import '@/global.css';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import Head from 'expo-router/head';
 import { useEffect } from 'react';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,12 +27,9 @@ export default function RootLayout() {
       <Head>
         <title>Oikou</title>
       </Head>
-      <SafeAreaProvider>
-          <SafeAreaView className='flex-1 bg-background' edges={['top', 'bottom']}> 
-            <Stack screenOptions={{ headerShown: false }}>
-            </Stack>
-          </SafeAreaView>
-      </SafeAreaProvider>
+      <AppWrapper>
+        <Stack screenOptions={{ headerShown: false }} />
+      </AppWrapper>
     </>
   );
 }
