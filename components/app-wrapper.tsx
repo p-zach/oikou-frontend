@@ -9,8 +9,8 @@ interface AppsWrapperProps {
 export default function AppWrapper({ children }: AppsWrapperProps) {
   if (Platform.OS === 'web') {
     return (
-      <View className="flex-1 flex-row justify-center items-center">
-        <View className="flex-1 max-w-lg h-[95vh] rounded-3xl overflow-hidden shadow-[0_0_10px_2px_rgba(0,0,0,0.2)]">
+      <View className="flex-1 flex-row justify-center items-center bg-surface">
+        <View className="flex-1 max-w-lg h-[95vh] rounded-3xl overflow-hidden shadow-border shadow-[0_0_10px_5px]">
           {children}
         </View>
       </View>

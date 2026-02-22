@@ -11,18 +11,18 @@ module.exports = {
         "lexend-regular": ["Lexend-Regular"],
       },
       colors: {
-        background: "rgb(var(--background))",
-        surface: "rgb(var(--surface))",
-        border: "rgb(var(--border))",
+        background: "var(--background)",
+        surface: "var(--surface)",
+        border: "var(--border)",
 
-        textPrimary: "rgb(var(--text-primary))",
-        textSecondary: "rgb(var(--text-secondary))",
+        textPrimary: "var(--text-primary)",
+        textSecondary: "var(--text-secondary)",
 
-        primary: "rgb(var(--primary))",
-        primaryForeground: "rgb(var(--primary-foreground))",
+        primary: "var(--primary)",
+        primaryForeground: "var(--primary-foreground)",
 
-        accent: "rgb(var(--accent))",
-        destructive: "rgb(var(--destructive))",
+        accent: "var(--accent)",
+        destructive: "var(--destructive)",
       },
     },
   },

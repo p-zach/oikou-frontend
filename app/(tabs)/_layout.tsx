@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 export default function TabsLayout() {
   return (
-    <View className='flex-1'>
+    <View className='flex-1 bg-background'>
       <Stack screenOptions={{ headerShown: false }} />
       <View className='bg-background border-border border-t flex-row justify-around'>
         <Link href={'/home'} className='p-2 flex-grow flex flex-row justify-center'>
