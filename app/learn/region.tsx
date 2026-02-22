@@ -35,15 +35,15 @@ export default function RegionMenu() {
   }, [r]);
 
   return (
-    <ScrollView className="w-full p-4 bg-background">
-      <View className="w-full flex-col gap-4">
+    <ScrollView className="w-full p-6 bg-background">
+      <View className="w-full flex-col gap-8">
         <View className="w-full flex-row justify-between">
           <AppText className="text-4xl">
             { getRegionTitle(r) }
           </AppText>
           <CloseButton route={{ pathname: "../home" }} />
         </View>
-        <View className="md:flex-row gap-4">
+        <View className="grid grid-cols-2 gap-8">
           {getAllLessonSubjects().map((lesson_type) =>
             <View key={`view-${lesson_type}`}>
               <Button 
