@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_UUID_KEY = 'local_user_uuid';
 
+// Refrain from using useAsyncStorageState here so that we can call this function easily from 
+// non-React contexts (like utils/api.ts)
 export async function getOrCreateLocalUUID(): Promise<string> {
   const storedUUID = await AsyncStorage.getItem(LOCAL_UUID_KEY);
 

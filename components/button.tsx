@@ -9,13 +9,14 @@ interface ButtonProps {
   className?: string;
   image?: ImageSourcePropType;
   children?: ReactNode;
+  disabled?: boolean;
 }
 
-export default function Button({ text, onPress, className, image, children }: ButtonProps) {
+export default function Button({ text, onPress, className, image, children, disabled }: ButtonProps) {
   return (
     <Pressable
-      className={`bg-primary rounded-xl items-center p-3 shadow-shadow shadow-md ${className || ''}`}
-      onPress={onPress}
+      className={`bg-primary rounded-xl items-center p-3 shadow-shadow shadow-md ${className || ''} ${disabled ? 'opacity-50 pointer-events-none' : 'active:opacity-80'}`}
+      onPress={disabled ? undefined : onPress}
     >
       <AppText className={`text-lg text-textSecondary ${image ? 'mb-2' : ''}`}>
         {text}

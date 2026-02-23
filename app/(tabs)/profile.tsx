@@ -1,7 +1,7 @@
 import { AppText, ThemeToggle } from "@/components";
 import { getOrCreateLocalUUID } from "@/utils/local-uuid";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 export default function Profile() {
   const [localUUID, setLocalUUID] = useState<string | null>(null);
@@ -15,10 +15,14 @@ export default function Profile() {
   }, []);
 
   return (
-    <View className="flex-1 items-center justify-center bg-background">
-      <AppText className="text-4xl">Profile</AppText>
-      <ThemeToggle />
-      <AppText className="mt-4">Your local UUID: {localUUID}</AppText>
-    </View>
+    <ScrollView className="w-full p-6 bg-background">
+      <View className="flex-col gap-8">
+        <AppText className="text-4xl">Profile</AppText>
+        <AppText className="text-2xl">Theme Preference</AppText>
+        <ThemeToggle />
+        <AppText className="text-2xl">Local UUID</AppText>
+        <AppText>{localUUID}</AppText>
+      </View>
+    </ScrollView>
   );
 }
