@@ -1,14 +1,9 @@
-import { useColorScheme } from "nativewind";
 import Button from "./button";
+import { useThemePreference } from "./theme-provider";
 
 export default function ThemeToggle() {
-  const { colorScheme, setColorScheme } = useColorScheme();
-
-  const toggleTheme = () => {
-    setColorScheme(colorScheme === "dark" ? "light" : "dark");
-  };
-
+  const { theme, setTheme } = useThemePreference();
   return (
-    <Button onPress={toggleTheme} text={colorScheme === "dark" ? "Switch to Light" : "Switch to Dark"} />
+    <Button onPress={() => setTheme(theme === "dark" ? "light" : "dark")} text={theme === "dark" ? "Switch to Light" : "Switch to Dark"} />
   );
 }

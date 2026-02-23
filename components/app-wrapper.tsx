@@ -1,8 +1,9 @@
 import { AppText } from "@/components";
+import { useFocusModePreference } from "@/hooks/use-focus-mode";
 import { getCssVariableValue } from "@/utils/css";
 import { Checkbox } from 'expo-checkbox';
 import { Link } from "expo-router";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { Platform, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,7 +12,7 @@ interface AppsWrapperProps {
 }
 
 export default function AppWrapper({ children }: AppsWrapperProps) {
-  const [inFocusMode, setFocusMode] = useState(false);
+  const { inFocusMode, setFocusMode } = useFocusModePreference();
 
   // Display info text on the sides of the app on web
   if (Platform.OS === 'web') {
@@ -52,7 +53,7 @@ export default function AppWrapper({ children }: AppsWrapperProps) {
         {/* Right side text */}
         <View className="flex-1 items-end justify-end">
           <View className="hidden lg:flex flex-row p-4">
-            <Checkbox 
+            <Checkbox
               value={inFocusMode}
               onValueChange={setFocusMode}
               color={getCssVariableValue("--primary")}

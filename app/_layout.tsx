@@ -1,4 +1,5 @@
 import AppWrapper from '@/components/app-wrapper';
+import { ThemeProvider } from '@/components/theme-provider';
 import '@/global.css';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
@@ -27,9 +28,11 @@ export default function RootLayout() {
       <Head>
         <title>Oikou</title>
       </Head>
-      <AppWrapper>
-        <Stack screenOptions={{ headerShown: false }} />
-      </AppWrapper>
+      <ThemeProvider>
+        <AppWrapper>
+          <Stack screenOptions={{ headerShown: false }} />
+        </AppWrapper>
+      </ThemeProvider>
     </>
   );
 }
