@@ -13,19 +13,36 @@ interface AppsWrapperProps {
 export default function AppWrapper({ children }: AppsWrapperProps) {
   const [inFocusMode, setFocusMode] = useState(false);
 
+  // Display info text on the sides of the app on web
   if (Platform.OS === 'web') {
     return (
       <View className="flex-1 flex-row bg-surface">
         {/* Left side text */}
         <View className="flex-1 items-start">
-          { !inFocusMode && <View className="hidden lg:block p-4 max-w-[500px]">
-            <AppText className="text-3xl">
-              <Text className="font-bold">Oikou</Text>{' '}
-              is a geography learning app created by{' '}
-              <Link href={{ pathname: "https://pzach.com" }} className="text-blue-500">
-                Porter Zach
-              </Link>.
-            </AppText>
+          { !inFocusMode && <View className="hidden lg:flex justify-between p-4 max-w-[500px] h-full">
+            <View>
+              <AppText className="text-3xl">
+                <Text className="font-bold">Oikou</Text>{' '}
+                is an open-source geography learning app.
+              </AppText>
+              <AppText className="mt-4 text-xl">
+                Created by{' '}
+                <Link href={{ pathname: "https://pzach.com" }} className="text-blue-500">
+                  Porter Zach
+                </Link>.
+              </AppText>
+            </View>
+            <View>
+              <AppText className="text-xl">
+                Check out the source code on{' '}
+                <Link href={{ pathname: "https://github.com/p-zach/oikou-frontend" }} className="text-blue-500">
+                  GitHub
+                </Link>.
+              </AppText>
+              <AppText className="mt-4 text-xl">
+                Coming to the App Store and Play Store soon.
+              </AppText>
+            </View>
           </View>}
         </View>
         {/* App view */}
@@ -34,7 +51,7 @@ export default function AppWrapper({ children }: AppsWrapperProps) {
         </View>
         {/* Right side text */}
         <View className="flex-1 items-end justify-end">
-          <View className="flex-row p-4">
+          <View className="hidden lg:flex flex-row p-4">
             <Checkbox 
               value={inFocusMode}
               onValueChange={setFocusMode}
