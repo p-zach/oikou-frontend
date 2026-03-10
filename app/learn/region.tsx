@@ -16,6 +16,12 @@ export default function RegionMenu() {
   const [mastery, setMastery] = useState<Record<LessonSubject, RegionSubjectMastery> | null>(null);
 
   const onLessonButtonPressed = (t: LessonSubject) => {
+    // TODO: Implement flags and neighbors lesson types
+    if (t === "flags" || t === "neighbors") {
+      alert(`${getLessonTitle(t)} lessons are not implemented yet! Try Capitals.`)
+      return;
+    }
+
     router.push({
       pathname: "/learn/lesson",
       params: { 

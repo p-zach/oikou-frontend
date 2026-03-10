@@ -1,6 +1,6 @@
 import { mock_continue_learning } from "@/assets/mocks/continue-learning";
 import { AppText, Button } from "@/components";
-import { getAllLessonSubjects, getLessonTitle } from "@/domain/lesson";
+import { getLessonTitle } from "@/domain/lesson";
 import { getAllRegions, getRegionTitle, Region } from "@/domain/region";
 import "@/global.css";
 import { router } from 'expo-router';
@@ -14,6 +14,11 @@ const images: Record<Region, ImageSourcePropType> = {
 
 export default function Home() {
   const onRegionButtonPress = (region: Region) => {
+    // TODO: Add asia and americas content
+    if (region === "africa" || region === "americas") {
+      alert(`Content for ${getRegionTitle(region)} has not been added yet! Try Europe.`)
+      return;
+    }
     router.push({
       pathname: "/learn/region",
       params: { 
@@ -38,9 +43,10 @@ export default function Home() {
         <AppText className="text-4xl">
           Home
         </AppText>
+        {/* TODO: Implement "Continue learning" backend */}
         <Button 
           text={
-            `Continue: \
+            `Continue learning: \
 ${getRegionTitle(mock_continue_learning.region)} - \
 ${getLessonTitle(mock_continue_learning.lesson_type)}`
           }
@@ -61,7 +67,8 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
             </View>
           ))}
         </ScrollView>
-        <AppText className="text-3xl">
+        {/* TODO: Add all-region practice options */}
+        {/* <AppText className="text-3xl">
           Practice (all regions)
         </AppText>
         <View className="gap-4 grid grid-cols-2">
@@ -73,7 +80,7 @@ ${getLessonTitle(mock_continue_learning.lesson_type)}`
               />
             </View>
           ))}
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   );
