@@ -1,6 +1,7 @@
 import { AppText } from "@/components";
 import { useFocusModePreference } from "@/hooks/use-focus-mode";
 import { getCssVariableValue } from "@/utils/css";
+import { getAppVersion } from "@/utils/version";
 import { Checkbox } from 'expo-checkbox';
 import { Link } from "expo-router";
 import { ReactNode } from "react";
@@ -21,6 +22,7 @@ export default function AppWrapper({ children }: AppsWrapperProps) {
         {/* Left side text */}
         <View className="flex-1 items-start">
           { !inFocusMode && <View className="hidden lg:flex justify-between p-4 max-w-[500px] h-full">
+            {/* Top left */}
             <View>
               <AppText className="text-3xl">
                 <Text className="font-bold">Oikou</Text>{' '}
@@ -33,14 +35,18 @@ export default function AppWrapper({ children }: AppsWrapperProps) {
                 </Link>.
               </AppText>
             </View>
+            {/* Bottom left */}
             <View>
-              <AppText className="text-xl">
+              <AppText className="text-lg">
+                v{ getAppVersion() }
+              </AppText>
+              <AppText className="mt-2 text-xl">
                 Check out the source code on{' '}
                 <Link href={{ pathname: "https://github.com/p-zach/oikou-frontend" }} className="text-blue-500">
                   GitHub
                 </Link>.
               </AppText>
-              <AppText className="mt-4 text-xl">
+              <AppText className="mt-2 text-xl">
                 Coming to the App Store and Play Store soon.
               </AppText>
             </View>
